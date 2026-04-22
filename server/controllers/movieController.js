@@ -30,12 +30,14 @@ const getMovieById = async (req, res) => {
 // @route   GET /api/movies/search?q=
 const searchMovies = async (req, res) => {
   try {
-    const keyword = req.query.q
+    const searchQuery = req.query.q ? req.query.q.trim() : '';
+    const keyword = searchQuery
       ? {
-          title: {
-            $regex: req.query.q,
-            $options: 'i',
-          },
+          $or: [
+            { title: { $regex: searchQuery, $options: 'i' } },
+            { genre: { $regex: searchQuery, $options: 'i' } },
+            { description: { $regex: searchQuery, $options: 'i' } },
+          ],
         }
       : {};
 

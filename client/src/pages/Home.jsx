@@ -33,6 +33,9 @@ const Home = () => {
   const actionMovies = movies.filter(m => m.genre === 'Action');
   const sciFiMovies = movies.filter(m => m.genre === 'Sci-Fi');
   const dramaMovies = movies.filter(m => m.genre === 'Drama');
+  const comedyMovies = movies.filter(m => m.genre === 'Comedy');
+  const horrorMovies = movies.filter(m => m.genre === 'Horror');
+  const documentaryMovies = movies.filter(m => m.genre === 'Documentary');
 
   return (
     <div className="pb-20">
@@ -42,7 +45,10 @@ const Home = () => {
         {myList.length > 0 && <MovieRow title="My List" movies={myList} />}
         {actionMovies.length > 0 && <MovieRow title="Action Movies" movies={actionMovies} />}
         {sciFiMovies.length > 0 && <MovieRow title="Sci-Fi & Fantasy" movies={sciFiMovies} />}
+        {comedyMovies.length > 0 && <MovieRow title="Comedies" movies={comedyMovies} />}
         {dramaMovies.length > 0 && <MovieRow title="Dramas" movies={dramaMovies} />}
+        {horrorMovies.length > 0 && <MovieRow title="Horror Movies" movies={horrorMovies} />}
+        {documentaryMovies.length > 0 && <MovieRow title="Documentaries" movies={documentaryMovies} />}
         {movies.length > 0 && <MovieRow title="All Movies" movies={movies} />}
       </div>
     </div>

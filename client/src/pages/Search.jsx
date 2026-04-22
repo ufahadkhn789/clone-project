@@ -13,7 +13,8 @@ const Search = () => {
     const fetchResults = async () => {
       setLoading(true);
       try {
-        const response = await api.get(`/movies/search?q=${query}`);
+        const endpoint = query ? `/movies/search?q=${query}` : '/movies';
+        const response = await api.get(endpoint);
         setResults(response.data);
       } catch (error) {
         console.error('Error fetching search results:', error);
@@ -22,15 +23,13 @@ const Search = () => {
       }
     };
 
-    if (query) {
-      fetchResults();
-    }
+    fetchResults();
   }, [query]);
 
   return (
     <div className="pt-24 px-4 md:px-12 min-h-screen">
       <h1 className="text-2xl md:text-3xl font-semibold mb-8 text-gray-300">
-        Search results for "{query}"
+        {query ? `Search results for "${query}"` : 'Explore all movies'}
       </h1>
 
       {loading ? (

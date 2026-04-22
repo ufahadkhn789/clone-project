@@ -32,6 +32,46 @@ const sampleMovies = [
     releaseYear: 2008
   },
   {
+    title: 'The Matrix',
+    description: 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.',
+    thumbnailUrl: 'https://image.tmdb.org/t/p/w500/f89U3z9vYp7C9CpcACSTBvP9v7i.jpg',
+    videoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+    genre: 'Sci-Fi',
+    releaseYear: 1999
+  },
+  {
+    title: 'The Wolf of Wall Street',
+    description: 'Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.',
+    thumbnailUrl: 'https://image.tmdb.org/t/p/w500/p9fuznDWYmOkR7lsCewm6FAp69p.jpg',
+    videoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    genre: 'Drama',
+    releaseYear: 2013
+  },
+  {
+    title: 'Superbad',
+    description: 'Two co-dependent high school seniors are forced to deal with separation anxiety after their plan to stage a booze-soaked party goes awry.',
+    thumbnailUrl: 'https://image.tmdb.org/t/p/w500/ek89VlPZ46pS9P6NisJ5O8V8W3v.jpg',
+    videoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+    genre: 'Comedy',
+    releaseYear: 2007
+  },
+  {
+    title: 'The Conjuring',
+    description: 'Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse.',
+    thumbnailUrl: 'https://image.tmdb.org/t/p/w500/9S7G2K2O26S3S7u77O720a4G3R6.jpg',
+    videoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
+    genre: 'Horror',
+    releaseYear: 2013
+  },
+  {
+    title: 'Our Planet',
+    description: 'Experience our planet\'s natural beauty and examine how climate change impacts all living creatures in this ambitious documentary of spectacular scope.',
+    thumbnailUrl: 'https://image.tmdb.org/t/p/w500/fR7T5yTzNnU0zU6R8q9m7Yp6R9p.jpg',
+    videoUrl: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    genre: 'Documentary',
+    releaseYear: 2019
+  },
+  {
     title: 'Avengers: Endgame',
     description: 'After the devastating events of Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos\' actions and restore balance to the universe.',
     thumbnailUrl: 'https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg',

@@ -35,15 +35,15 @@ const Navbar = () => {
     <nav className={`fixed w-full z-50 top-0 transition-all duration-300 ${isScrolled ? 'bg-[#141414]' : 'bg-transparent bg-gradient-to-b from-black/80 to-transparent'}`}>
       <div className="flex items-center justify-between px-4 md:px-12 py-4">
         <div className="flex items-center gap-8">
-          <Link to="/">
-            <h1 className="text-netflix text-2xl md:text-4xl font-bold cursor-pointer">NETFLIX</h1>
+          <Link to="/" onClick={() => window.scrollTo(0, 0)}>
+            <h1 className="text-netflix text-2xl md:text-4xl font-bold cursor-pointer transition-transform hover:scale-105">NETFLIX</h1>
           </Link>
           <ul className="hidden md:flex gap-4 text-sm font-medium text-gray-300">
-            <li className="cursor-pointer hover:text-white transition">Home</li>
-            <li className="cursor-pointer hover:text-white transition">TV Shows</li>
-            <li className="cursor-pointer hover:text-white transition">Movies</li>
-            <li className="cursor-pointer hover:text-white transition">New & Popular</li>
-            <li className="cursor-pointer hover:text-white transition">My List</li>
+            <li className="cursor-pointer hover:text-white transition" onClick={() => navigate('/')}>Home</li>
+            <li className="cursor-pointer hover:text-white transition" onClick={() => navigate('/search?q=Action')}>TV Shows</li>
+            <li className="cursor-pointer hover:text-white transition" onClick={() => navigate('/search?q=Sci-Fi')}>Movies</li>
+            <li className="cursor-pointer hover:text-white transition" onClick={() => navigate('/search?q=')}>New & Popular</li>
+            <li className="cursor-pointer hover:text-white transition" onClick={() => navigate('/')}>My List</li>
           </ul>
         </div>
 
@@ -55,7 +55,10 @@ const Navbar = () => {
               placeholder="Titles, people, genres" 
               className="bg-transparent text-white text-sm focus:outline-none ml-2 w-32 md:w-48 placeholder-gray-400"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                navigate(`/search?q=${e.target.value}`);
+              }}
             />
           </form>
           <Bell className="w-5 h-5 cursor-pointer hidden md:block" />

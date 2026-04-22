@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Play, ArrowLeft, Plus } from 'lucide-react';
+import { Play, ArrowLeft, Plus, Check } from 'lucide-react';
 import api from '../services/api';
 import VideoPlayer from '../components/VideoPlayer';
 
@@ -9,21 +9,40 @@ const MovieDetails = () => {
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isInList, setIsInList] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchMovie = async () => {
+    const fetchMovieData = async () => {
       try {
-        const response = await api.get(`/movies/${id}`);
-        setMovie(response.data);
+        const movieRes = await api.get(`/movies/${id}`);
+        setMovie(movieRes.data);
+        
+        const listRes = await api.get('/users/mylist');
+        const inList = listRes.data.some(m => m._id === id);
+        setIsInList(inList);
       } catch (error) {
-        console.error('Error fetching movie details:', error);
+        console.error('Error fetching data:', error);
       } finally {
         setLoading(false);
       }
     };
-    fetchMovie();
+    fetchMovieData();
   }, [id]);
+
+  const toggleMyList = async () => {
+    try {
+      if (isInList) {
+        await api.post('/users/mylist/remove', { movieId: id });
+        setIsInList(false);
+      } else {
+        await api.post('/users/mylist/add', { movieId: id });
+        setIsInList(true);
+      }
+    } catch (error) {
+      console.error('Error updating My List:', error);
+    }
+  };
 
   if (loading) {
     return <div className="h-screen w-full flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-netflix"></div></div>;
@@ -38,7 +57,7 @@ const MovieDetails = () => {
       <div className="relative h-screen w-full bg-black">
         <button 
           onClick={() => setIsPlaying(false)}
-          className="absolute top-6 left-6 z-50 text-white hover:text-gray-300 transition"
+          className="absolute top-6 left-6 z-50 text-white hover:text-gray-300 transition bg-black/50 p-2 rounded-full"
         >
           <ArrowLeft className="w-8 h-8" />
         </button>
@@ -87,8 +106,12 @@ const MovieDetails = () => {
             <Play fill="black" className="w-6 h-6" /> Play
           </button>
           
-          <button className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-gray-400 hover:border-white text-white transition bg-black/50">
-            <Plus className="w-6 h-6" />
+          <button 
+            onClick={toggleMyList}
+            className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-gray-400 hover:border-white text-white transition bg-black/50"
+            title={isInList ? "Remove from My List" : "Add to My List"}
+          >
+            {isInList ? <Check className="w-6 h-6" /> : <Plus className="w-6 h-6" />}
           </button>
         </div>
       </div>
