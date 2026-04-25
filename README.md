@@ -17,9 +17,9 @@ A fully functional Netflix clone built with React, Node.js, Express, MongoDB, an
 - MongoDB (local or Atlas)
 
 ### 1. Backend Setup
-1. Open a terminal and navigate to the `server` directory:
+1. Open a terminal and navigate to the `backend` directory:
    ```bash
-   cd server
+   cd backend
    ```
 2. Install dependencies:
    ```bash
@@ -40,9 +40,9 @@ A fully functional Netflix clone built with React, Node.js, Express, MongoDB, an
    The backend should now be running on `http://localhost:5000`.
 
 ### 2. Frontend Setup
-1. Open a new terminal and navigate to the `client` directory:
+1. Open a new terminal and navigate to the `frontend` directory:
    ```bash
-   cd client
+   cd frontend
    ```
 2. Install dependencies:
    ```bash

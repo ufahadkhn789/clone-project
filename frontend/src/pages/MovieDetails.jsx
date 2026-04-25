@@ -10,6 +10,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isInList, setIsInList] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,6 +22,12 @@ const MovieDetails = () => {
         const listRes = await api.get('/users/mylist');
         const inList = listRes.data.some(m => m._id === id);
         setIsInList(inList);
+
+        const historyRes = await api.get('/users/history');
+        const historyEntry = historyRes.data.find(h => h.movieId._id === id);
+        if (historyEntry) {
+          setProgress(historyEntry.progress);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -61,7 +68,7 @@ const MovieDetails = () => {
         >
           <ArrowLeft className="w-8 h-8" />
         </button>
-        <VideoPlayer videoUrl={movie.videoUrl} />
+        <VideoPlayer videoUrl={movie.videoUrl} movieId={id} startTime={progress} />
       </div>
     );
   }
