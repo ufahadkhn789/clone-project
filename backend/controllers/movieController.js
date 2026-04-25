@@ -33,12 +33,12 @@ const searchMovies = async (req, res) => {
     const searchQuery = req.query.q ? req.query.q.trim() : '';
     const keyword = searchQuery
       ? {
-          $or: [
-            { title: { $regex: searchQuery, $options: 'i' } },
-            { genre: { $regex: searchQuery, $options: 'i' } },
-            { description: { $regex: searchQuery, $options: 'i' } },
-          ],
-        }
+        $or: [
+          { title: { $regex: searchQuery, $options: 'i' } },
+          { genre: { $regex: searchQuery, $options: 'i' } },
+          { description: { $regex: searchQuery, $options: 'i' } },
+        ],
+      }
       : {};
 
     const movies = await Movie.find({ ...keyword });

@@ -43,7 +43,7 @@ const Navbar = () => {
             <li className="cursor-pointer hover:text-white transition" onClick={() => navigate('/search?q=Action')}>TV Shows</li>
             <li className="cursor-pointer hover:text-white transition" onClick={() => navigate('/search?q=Sci-Fi')}>Movies</li>
             <li className="cursor-pointer hover:text-white transition" onClick={() => navigate('/search?q=')}>New & Popular</li>
-            <li className="cursor-pointer hover:text-white transition" onClick={() => navigate('/')}>My List</li>
+            <li className="cursor-pointer hover:text-white transition" onClick={() => navigate('/mylist')}>My List</li>
           </ul>
         </div>
 

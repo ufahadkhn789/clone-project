@@ -6,6 +6,7 @@ import api from '../services/api';
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [myList, setMyList] = useState([]);
+  const [continueWatching, setContinueWatching] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -26,8 +27,22 @@ const Home = () => {
       }
     };
 
+    const fetchHistory = async () => {
+      try {
+        const response = await api.get('/users/history');
+        // Only show movies with significant progress (> 5 seconds)
+        const inProgress = response.data
+          .filter(h => h.progress > 5)
+          .map(h => h.movieId);
+        setContinueWatching(inProgress);
+      } catch (error) {
+        console.error('Error fetching history:', error);
+      }
+    };
+
     fetchMovies();
     fetchMyList();
+    fetchHistory();
   }, []);
 
   const actionMovies = movies.filter(m => m.genre === 'Action');
@@ -42,6 +57,7 @@ const Home = () => {
       {movies.length > 0 && <Banner movie={movies[Math.floor(Math.random() * movies.length)]} />}
       
       <div className="pl-4 md:pl-12 -mt-32 relative z-20 space-y-8">
+        {continueWatching.length > 0 && <MovieRow title="Continue Watching" movies={continueWatching} />}
         {myList.length > 0 && <MovieRow title="My List" movies={myList} />}
         {actionMovies.length > 0 && <MovieRow title="Action Movies" movies={actionMovies} />}
         {sciFiMovies.length > 0 && <MovieRow title="Sci-Fi & Fantasy" movies={sciFiMovies} />}

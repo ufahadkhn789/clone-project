@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import MovieDetails from './pages/MovieDetails';
 import Search from './pages/Search';
+import MyList from './pages/MyList';
 
 // Components
 import Navbar from './components/Navbar';
@@ -25,6 +26,7 @@ function App() {
           <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
           <Route path="/movie/:id" element={user ? <MovieDetails /> : <Navigate to="/login" />} />
           <Route path="/search" element={user ? <Search /> : <Navigate to="/login" />} />
+          <Route path="/mylist" element={user ? <MyList /> : <Navigate to="/login" />} />
         </Routes>
       </div>
     </Router>
